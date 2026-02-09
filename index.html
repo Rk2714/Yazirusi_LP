@@ -583,7 +583,9 @@
                 
                 if (response.ok) {
                     const data = await response.json();
-                    addMessage(data.response || data.output || 'ご質問ありがとうございます。担当者より折り返しご連絡いたします。');
+                    // n8nは配列で返すことがあるので対応
+                    const result = Array.isArray(data) ? data[0] : data;
+                    addMessage(result.output || result.response || 'ご質問ありがとうございます。担当者より折り返しご連絡いたします。');
                 } else {
                     addMessage('申し訳ありません。現在接続に問題が発生しています。お手数ですがメールでお問い合わせください。');
                 }
