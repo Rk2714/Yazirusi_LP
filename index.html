@@ -14,12 +14,14 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#6bcb9e", 
-                        "accent": "#6bcb9e",
-                        "primary-light": "#a8e6cf",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#0a0f0d",
-                        "surface-dark": "#0f1512",
+                        "primary": "#4ade80", 
+                        "accent": "#4ade80",
+                        "primary-light": "#86efac",
+                        "primary-dark": "#22c55e",
+                        "background-light": "#f0fdf4",
+                        "background-dark": "#0f1f17",
+                        "surface-dark": "#162419",
+                        "surface-light": "#1a2e21",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"],
@@ -230,6 +232,312 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 </div>
 </div>
+</div>
+</section>
+
+<!-- 代表者セクション -->
+<section class="relative bg-gradient-to-b from-surface-dark to-background-dark py-32 overflow-hidden" id="about">
+<div class="absolute inset-0 opacity-20">
+<div class="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- 左側：写真 -->
+<div class="relative">
+<div class="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-white/10">
+<!-- プレースホルダー（実際の写真に差し替え可能） -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center">
+<div class="w-32 h-32 mx-auto bg-primary/30 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-6xl text-white/80">person</span>
+</div>
+<p class="text-white/40 text-sm japanese-text">写真準備中</p>
+</div>
+</div>
+<!-- 装飾 -->
+<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/20 rounded-2xl -z-10"></div>
+<div class="absolute -top-4 -left-4 w-24 h-24 border-2 border-primary/30 rounded-2xl -z-10"></div>
+</div>
+<!-- 名前カード -->
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-surface-light/90 backdrop-blur-xl border border-white/20 rounded-2xl px-8 py-4 text-center">
+<p class="text-white font-bold text-xl japanese-text">金城 竜弥</p>
+<p class="text-primary text-sm">Kaneshiro Ryuya</p>
+</div>
+</div>
+
+<!-- 右側：プロフィール -->
+<div class="space-y-8">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
+<span class="material-symbols-outlined text-primary text-lg">eco</span>
+<span class="text-primary text-sm font-medium">About Me</span>
+</div>
+
+<h3 class="text-3xl md:text-4xl font-bold text-white leading-tight japanese-text">
+「仕組みを直せば、<br class="hidden md:block">
+<span class="text-primary">人が救われる</span>」
+</h3>
+
+<div class="space-y-4 text-white/70 text-lg leading-relaxed japanese-text">
+<p>
+看護師として13年間、現場で働いてきました。夜勤、急患対応、膨大な書類仕事...
+その中で痛感したのは「仕組みがダメだと人が潰れる」ということ。
+</p>
+<p>
+今はAIを使った業務改善を支援しています。難しい技術を、現場で使えるカタチに変えるのが得意です。
+</p>
+</div>
+
+<!-- パーソナル情報 -->
+<div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<p class="text-white/50 text-xs">拠点</p>
+<p class="text-white font-medium">沖縄県</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+</div>
+<div>
+<p class="text-white/50 text-xs">趣味</p>
+<p class="text-white font-medium">クロスフィット</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">restaurant</span>
+</div>
+<div>
+<p class="text-white/50 text-xs">好きな食べ物</p>
+<p class="text-white font-medium">タコライス</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">beach_access</span>
+</div>
+<div>
+<p class="text-white/50 text-xs">おすすめスポット</p>
+<p class="text-white font-medium">キラキラビーチ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 実績・Before/After セクション -->
+<section class="bg-background-dark py-32" id="results">
+<div class="max-w-7xl mx-auto px-6">
+<!-- ヘッダー -->
+<div class="text-center mb-20">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">trending_up</span>
+<span class="text-primary text-sm font-medium">Results</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+導入<span class="text-primary">事例</span>
+</h2>
+<p class="text-white/60 text-lg max-w-lg mx-auto japanese-text">
+実際のクライアント様での改善実績をご紹介します
+</p>
+</div>
+
+<!-- 事例カード -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- 事例1 -->
+<div class="bg-surface-dark border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all group">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">agriculture</span>
+</div>
+<div>
+<p class="text-white font-bold">農場</p>
+<p class="text-white/50 text-sm">在庫管理</p>
+</div>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between">
+<span class="text-white/50 text-sm">Before</span>
+<span class="text-white/70 text-sm line-through">紙で手書き管理</span>
+</div>
+<div class="h-[1px] bg-gradient-to-r from-red-500/50 to-primary/50"></div>
+<div class="flex items-center justify-between">
+<span class="text-primary text-sm font-bold">After</span>
+<span class="text-white text-sm">スマホ入力 + 自動計算</span>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl p-4 text-center">
+<p class="text-3xl font-black text-primary">月20時間</p>
+<p class="text-white/60 text-sm">削減</p>
+</div>
+</div>
+
+<!-- 事例2 -->
+<div class="bg-surface-dark border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all group">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">local_hospital</span>
+</div>
+<div>
+<p class="text-white font-bold">オンライン診療</p>
+<p class="text-white/50 text-sm">勤怠管理</p>
+</div>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between">
+<span class="text-white/50 text-sm">Before</span>
+<span class="text-white/70 text-sm line-through">Excel手動集計</span>
+</div>
+<div class="h-[1px] bg-gradient-to-r from-red-500/50 to-primary/50"></div>
+<div class="flex items-center justify-between">
+<span class="text-primary text-sm font-bold">After</span>
+<span class="text-white text-sm">自動集計システム</span>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl p-4 text-center">
+<p class="text-3xl font-black text-primary">ミス0件</p>
+<p class="text-white/60 text-sm">達成</p>
+</div>
+</div>
+
+<!-- 事例3 -->
+<div class="bg-surface-dark border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all group">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">school</span>
+</div>
+<div>
+<p class="text-white font-bold">IT企業</p>
+<p class="text-white/50 text-sm">新人教育</p>
+</div>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between">
+<span class="text-white/50 text-sm">Before</span>
+<span class="text-white/70 text-sm line-through">先輩に都度質問</span>
+</div>
+<div class="h-[1px] bg-gradient-to-r from-red-500/50 to-primary/50"></div>
+<div class="flex items-center justify-between">
+<span class="text-primary text-sm font-bold">After</span>
+<span class="text-white text-sm">AI即答システム</span>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl p-4 text-center">
+<p class="text-3xl font-black text-primary">教育期間50%</p>
+<p class="text-white/60 text-sm">短縮</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- お客様の声セクション -->
+<section class="bg-gradient-to-b from-background-dark to-surface-dark py-32" id="testimonials">
+<div class="max-w-7xl mx-auto px-6">
+<!-- ヘッダー -->
+<div class="text-center mb-20">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">format_quote</span>
+<span class="text-primary text-sm font-medium">Testimonials</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+お客様の<span class="text-primary">声</span>
+</h2>
+</div>
+
+<!-- テスティモニアルカード -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- 声1 -->
+<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative">
+<div class="absolute -top-4 left-8">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">format_quote</span>
+</div>
+</div>
+<p class="text-white/80 leading-relaxed mb-6 japanese-text pt-4">
+「紙管理だった在庫がスマホで見れるようになって、買い出しのムダがなくなりました。金城さんは現場のことをよく分かってくれる」
+</p>
+<div class="flex items-center gap-4 pt-4 border-t border-white/10">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="text-primary font-bold">A</span>
+</div>
+<div>
+<p class="text-white font-bold">A様</p>
+<p class="text-white/50 text-sm">農業法人 代表</p>
+</div>
+</div>
+</div>
+
+<!-- 声2 -->
+<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative">
+<div class="absolute -top-4 left-8">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">format_quote</span>
+</div>
+</div>
+<p class="text-white/80 leading-relaxed mb-6 japanese-text pt-4">
+「勤怠計算のミスがゼロになりました。毎月の締め作業が怖くなくなった。もっと早くお願いすればよかった」
+</p>
+<div class="flex items-center gap-4 pt-4 border-t border-white/10">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="text-primary font-bold">B</span>
+</div>
+<div>
+<p class="text-white font-bold">B様</p>
+<p class="text-white/50 text-sm">医療ベンチャー 事務長</p>
+</div>
+</div>
+</div>
+
+<!-- 声3 -->
+<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative">
+<div class="absolute -top-4 left-8">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">format_quote</span>
+</div>
+</div>
+<p class="text-white/80 leading-relaxed mb-6 japanese-text pt-4">
+「新人の『これどうやるの？』がAIで解決できるようになった。先輩の負担が減って、チーム全体が楽になった」
+</p>
+<div class="flex items-center gap-4 pt-4 border-t border-white/10">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="text-primary font-bold">C</span>
+</div>
+<div>
+<p class="text-white font-bold">C様</p>
+<p class="text-white/50 text-sm">IT企業 マネージャー</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 中盤CTA -->
+<section class="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-20 relative overflow-hidden">
+<div class="absolute inset-0">
+<div class="absolute top-0 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 right-1/4 w-48 h-48 bg-primary/30 rounded-full blur-2xl"></div>
+</div>
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<h3 class="text-3xl md:text-4xl font-bold text-white mb-4 japanese-text">
+まずは<span class="text-primary">5分</span>、お話しませんか？
+</h3>
+<p class="text-white/70 text-lg mb-8 japanese-text">
+現在の課題をお聞かせください。解決の糸口が見つかるかもしれません。
+</p>
+<a href="#contact" class="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg shadow-primary/30 group">
+<span class="text-lg japanese-text">無料相談する</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
 </div>
 </section>
 
@@ -511,34 +819,6 @@ class="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white 
 </div>
 </div>
 
-<!-- 時間帯 -->
-<div class="space-y-4">
-<label class="text-white/80 text-sm font-medium japanese-text flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-lg">schedule</span>
-ご希望の時間帯
-</label>
-<div class="flex flex-wrap gap-3">
-<label class="cursor-pointer">
-<input type="checkbox" name="time_slot" value="morning" class="hidden peer">
-<div class="peer-checked:border-primary peer-checked:bg-primary/20 border border-white/20 rounded-full px-5 py-2.5 transition-all hover:border-white/40">
-<span class="text-white/80 text-sm japanese-text">午前（9:00-12:00）</span>
-</div>
-</label>
-<label class="cursor-pointer">
-<input type="checkbox" name="time_slot" value="afternoon" class="hidden peer">
-<div class="peer-checked:border-primary peer-checked:bg-primary/20 border border-white/20 rounded-full px-5 py-2.5 transition-all hover:border-white/40">
-<span class="text-white/80 text-sm japanese-text">午後（13:00-17:00）</span>
-</div>
-</label>
-<label class="cursor-pointer">
-<input type="checkbox" name="time_slot" value="evening" class="hidden peer">
-<div class="peer-checked:border-primary peer-checked:bg-primary/20 border border-white/20 rounded-full px-5 py-2.5 transition-all hover:border-white/40">
-<span class="text-white/80 text-sm japanese-text">夕方以降（17:00-）</span>
-</div>
-</label>
-</div>
-</div>
-
 <!-- ご相談内容 -->
 <div class="space-y-2">
 <label class="text-white/80 text-sm font-medium japanese-text flex items-center gap-2">
@@ -600,7 +880,14 @@ class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white 
 </footer>
 
 <!-- Chat Widget -->
-<div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+<div id="chat-widget" class="fixed bottom-6 right-6 z-50 md:bottom-6 bottom-20">
+
+<!-- スマホ固定CTAボタン -->
+<a href="#contact" id="mobile-cta" class="fixed bottom-0 left-0 right-0 md:hidden bg-primary text-white font-bold py-4 px-6 flex items-center justify-center gap-2 shadow-lg shadow-primary/30 z-40 japanese-text">
+<span class="material-symbols-outlined">calendar_month</span>
+無料相談する
+</a>
+
     <!-- Chat Toggle Button - ユニークな形状 -->
     <button id="chat-toggle" class="group relative w-16 h-16 bg-white text-black shadow-2xl shadow-black/30 flex items-center justify-center hover:scale-110 transition-all duration-300" style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
         <span class="material-symbols-outlined text-2xl transition-transform group-hover:rotate-12" id="chat-icon">chat</span>
