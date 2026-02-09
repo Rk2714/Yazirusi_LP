@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>キャリアサポート - Yazirusi | キャリアコンサルタント</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans+JP:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#f59e0b", 
+                    "accent": "#f59e0b",
+                    "primary-light": "#fbbf24",
+                    "primary-dark": "#d97706",
+                    "background-light": "#fffbeb",
+                    "background-dark": "#1c1917",
+                    "surface-dark": "#292524",
+                    "surface-light": "#44403c",
+                },
+                fontFamily: {
+                    "display": ["Manrope", "sans-serif"],
+                    "japanese": ["Noto Sans JP", "sans-serif"],
+                },
+            },
+        },
+    }
+</script>
+<style>
+    body {
+        font-family: 'Manrope', 'Noto Sans JP', sans-serif;
+    }
+    .japanese-text {
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+    
+    /* 手書き風アンダーライン（アンバー） */
+    .hand-underline {
+        position: relative;
+        display: inline-block;
+    }
+    .hand-underline::after {
+        content: '';
+        position: absolute;
+        left: -2%;
+        bottom: -4px;
+        width: 104%;
+        height: 8px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0,5 Q10,2 20,5 T40,5 T60,5 T80,5 T100,5' stroke='%23f59e0b' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.7;
+    }
+    
+    /* 手書き風マーカー（アンバー） */
+    .hand-marker {
+        background: linear-gradient(104deg, transparent 0.9%, rgba(245,158,11,0.3) 2.4%, rgba(245,158,11,0.2) 5.8%, rgba(245,158,11,0.3) 93%, rgba(245,158,11,0.15) 96%, transparent 98%);
+        border-radius: 2px;
+        padding: 0 4px;
+        margin: 0 -4px;
+    }
+    
+    /* 有機的な形状のblob */
+    .organic-blob {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        animation: blob-morph 8s ease-in-out infinite;
+    }
+    @keyframes blob-morph {
+        0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+    
+    /* カード：不均一な角丸 */
+    .organic-card {
+        border-radius: 24px 8px 24px 8px;
+    }
+    .organic-card-alt {
+        border-radius: 8px 24px 8px 24px;
+    }
+    
+    /* フェードイン */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* ボタンホバー */
+    .btn-hover-lift {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-hover-lift:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 40px -10px rgba(245, 158, 11, 0.4);
+    }
+    
+    /* カードホバー */
+    .card-hover-glow {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover-glow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px -20px rgba(245, 158, 11, 0.3);
+    }
+    
+    /* ローディング */
+    #loading-screen {
+        position: fixed;
+        inset: 0;
+        background: #1c1917;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s, visibility 0.5s;
+    }
+    #loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .loading-logo {
+        font-size: 4rem;
+        font-weight: 900;
+        color: #f59e0b;
+        animation: loading-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes loading-pulse {
+        0%, 100% { opacity: 0.3; transform: scale(0.95); }
+        50% { opacity: 1; transform: scale(1.05); }
+    }
+    
+    /* 価格の打ち消し線 */
+    .price-strike {
+        position: relative;
+        color: rgba(255,255,255,0.4);
+    }
+    .price-strike::after {
+        content: '';
+        position: absolute;
+        left: -5%;
+        top: 50%;
+        width: 110%;
+        height: 2px;
+        background: #ef4444;
+        transform: rotate(-5deg);
+    }
+    
+    /* お得バッジ */
+    .badge-save {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body class="bg-background-dark text-white antialiased overflow-x-hidden">
+
+<!-- ローディングスクリーン -->
+<div id="loading-screen">
+<div class="loading-logo">C</div>
+</div>
+
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<a href="index.html" class="flex items-center gap-3 group cursor-pointer">
+<div class="size-8 bg-primary text-white flex items-center justify-center rounded-sm font-black text-xl">
+    Y
+</div>
+<div class="flex flex-col">
+<h2 class="text-white text-lg font-bold leading-none tracking-tight">YAZIRUSI</h2>
+<span class="text-primary text-[10px] uppercase tracking-widest">Career Support</span>
+</div>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#concerns">お悩み</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#personal">個人向け</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#corporate">企業向け</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="index.html">AI支援</a>
+</div>
+<div class="flex items-center gap-4">
+<a href="#contact" class="bg-primary hover:bg-primary-dark text-white text-sm font-bold h-10 px-6 rounded-sm transition-colors flex items-center gap-2 btn-hover-lift">
+<span>無料相談</span>
+<span class="material-symbols-outlined text-sm">arrow_outward</span>
+</a>
+</div>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<header class="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
+<!-- 装飾 -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 organic-blob blur-3xl"></div>
+<div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-primary/5 organic-blob blur-2xl" style="animation-delay: -4s;"></div>
+
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark via-background-dark/80 to-background-dark z-10"></div>
+<!-- 温かみのある背景画像 -->
+<img alt="Person thinking about career" class="w-full h-full object-cover opacity-30" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2670&auto=format&fit=crop"/>
+</div>
+
+<div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-8">
+<span class="material-symbols-outlined text-primary text-lg">psychology</span>
+<span class="text-primary text-sm font-medium">Career Consulting</span>
+</div>
+
+<h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 japanese-text">
+<span class="hand-underline text-primary">キャリア迷子</span>、<br class="md:hidden">
+増えていませんか？
+</h1>
+
+<p class="text-xl md:text-2xl text-white/70 leading-relaxed mb-8 japanese-text max-w-3xl mx-auto">
+「自分の役割って何だろう」「このままでいいのかな」<br class="hidden md:block">
+そんな声が、あちこちから聞こえてきます。
+</p>
+
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<a href="#personal" class="group h-14 px-10 bg-primary hover:bg-primary-dark text-white font-bold text-lg rounded-lg flex items-center justify-center gap-3 transition-all btn-hover-lift japanese-text">
+個人の方はこちら
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a href="#corporate" class="h-14 px-10 border-2 border-white/30 hover:border-primary text-white/80 hover:text-primary font-bold text-lg rounded-lg flex items-center justify-center gap-3 transition-all japanese-text">
+企業の方はこちら
+</a>
+</div>
+
+<!-- スクロール誘導 -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+<span class="text-white/30 text-xs japanese-text">Scroll</span>
+<div class="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
+<div class="w-1.5 h-3 bg-primary rounded-full animate-bounce"></div>
+</div>
+</div>
+</div>
+</header>
+
+<!-- ターゲット別の悩みセクション -->
+<section class="bg-surface-dark py-32" id="concerns">
+<div class="max-w-7xl mx-auto px-6">
+<!-- ヘッダー -->
+<div class="text-center mb-20 fade-in-up">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">group</span>
+<span class="text-primary text-sm font-medium">Target</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+こんな<span class="text-primary">悩み</span>、ありませんか？
+</h2>
+<p class="text-white/60 text-lg japanese-text">
+どの世代にも、キャリアの壁があります
+</p>
+</div>
+
+<!-- 3つのターゲット -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- 新人・学生 -->
+<div class="bg-background-dark border border-white/10 organic-card p-8 card-hover-glow fade-in-up">
+<div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4 japanese-text">新人・学生さん</h3>
+<ul class="space-y-3 text-white/70 japanese-text">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「この仕事、自分に合ってるのかな...」
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「将来のキャリアパスが見えない」
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「上司に相談しづらい」
+</li>
+</ul>
+</div>
+
+<!-- 中間管理職 -->
+<div class="bg-background-dark border border-primary/30 organic-card-alt p-8 card-hover-glow fade-in-up" style="transition-delay: 0.1s;">
+<div class="absolute -top-3 right-6 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">最も多い相談</div>
+<div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">supervisor_account</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4 japanese-text">中間管理職の方</h3>
+<ul class="space-y-3 text-white/70 japanese-text">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「上と下の板挟みで疲弊している」
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「自分の成長が止まっている気がする」
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「本当にこの道でいいのか」
+</li>
+</ul>
+</div>
+
+<!-- リタイア前・再雇用 -->
+<div class="bg-background-dark border border-white/10 organic-card p-8 card-hover-glow fade-in-up" style="transition-delay: 0.2s;">
+<div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">elderly</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4 japanese-text">リタイア前の方</h3>
+<ul class="space-y-3 text-white/70 japanese-text">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「再雇用を選ぶべきか迷っている」
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「第二の人生をどう過ごすか」
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5">check_circle</span>
+「経験を活かせる場所はあるか」
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- なぜ外部の専門家か -->
+<section class="bg-background-dark py-32 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 organic-blob blur-3xl"></div>
+
+<div class="max-w-6xl mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- 左側 -->
+<div class="space-y-8 fade-in-left">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
+<span class="material-symbols-outlined text-primary text-lg">lightbulb</span>
+<span class="text-primary text-sm font-medium">Why External Expert?</span>
+</div>
+
+<h3 class="text-3xl md:text-4xl font-bold text-white leading-tight japanese-text">
+なぜ<span class="hand-underline text-primary">外部</span>の<br>
+キャリアコンサルタントなのか
+</h3>
+
+<div class="space-y-4 text-white/70 text-lg japanese-text">
+<p>
+社内だけでキャリアを考えると、どうしても視野が狭くなりがち。
+</p>
+<p>
+上司に相談しても、「その場の解決策」になりがち。同僚に相談しても、利害関係が絡む。
+</p>
+<p>
+<span class="text-white font-medium">外部の専門家だからこそ、本音で話せる。</span><br>
+客観的な視点で、あなたのキャリアを一緒に考えます。
+</p>
+</div>
+</div>
+
+<!-- 右側：メリットカード -->
+<div class="space-y-4 fade-in-right">
+<div class="bg-surface-dark border border-white/10 organic-card p-6 flex items-start gap-4">
+<div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">visibility_off</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-lg mb-2 japanese-text">利害関係がない</h4>
+<p class="text-white/60 text-sm japanese-text">社内の人間関係に影響されず、純粋にあなたのキャリアだけを考えます</p>
+</div>
+</div>
+
+<div class="bg-surface-dark border border-white/10 organic-card-alt p-6 flex items-start gap-4">
+<div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">lock</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-lg mb-2 japanese-text">完全守秘義務</h4>
+<p class="text-white/60 text-sm japanese-text">話した内容は絶対に外部に漏れません。安心して本音を話せます</p>
+</div>
+</div>
+
+<div class="bg-surface-dark border border-white/10 organic-card p-6 flex items-start gap-4">
+<div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">psychology</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-lg mb-2 japanese-text">専門的なスキル</h4>
+<p class="text-white/60 text-sm japanese-text">国家資格を持つキャリアコンサルタントが、科学的なアプローチでサポート</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 個人向けプラン -->
+<section class="bg-gradient-to-b from-surface-dark to-background-dark py-32" id="personal">
+<div class="max-w-6xl mx-auto px-6">
+<!-- ヘッダー -->
+<div class="text-center mb-16 fade-in-up">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">person</span>
+<span class="text-primary text-sm font-medium">For Individuals</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+個人向け<span class="text-primary">キャリア面談</span>
+</h2>
+<p class="text-white/60 text-lg japanese-text">
+まずは気軽に話してみませんか？
+</p>
+</div>
+
+<!-- プランカード -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<!-- 初回限定 -->
+<div class="bg-background-dark border-2 border-primary organic-card p-8 relative overflow-hidden card-hover-glow fade-in-left">
+<div class="absolute top-0 right-0 bg-primary text-white font-bold px-4 py-2 rounded-bl-2xl japanese-text text-sm">
+初回限定
+</div>
+
+<h3 class="text-2xl font-bold text-white mb-2 japanese-text">お試し面談</h3>
+<p class="text-white/50 text-sm mb-6 japanese-text">45分 / オンライン対応可</p>
+
+<div class="flex items-baseline gap-3 mb-6">
+<span class="text-2xl price-strike japanese-text">¥5,000</span>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<span class="text-5xl font-black text-primary">¥3,000</span>
+<span class="text-white/50 text-sm">（税込）</span>
+</div>
+
+<ul class="space-y-3 mb-8 text-white/70 japanese-text">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+現状のヒアリング
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+キャリアの棚卸し
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+次のステップの提案
+</li>
+</ul>
+
+<a href="#contact" class="block w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-xl text-center transition-all btn-hover-lift japanese-text">
+まずは話してみる
+</a>
+</div>
+
+<!-- 3回パック -->
+<div class="bg-background-dark border border-white/10 organic-card-alt p-8 relative overflow-hidden card-hover-glow fade-in-right">
+<div class="absolute top-0 right-0 bg-green-500 text-white font-bold px-4 py-2 rounded-bl-2xl japanese-text text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">savings</span>
+4,000円お得
+</div>
+
+<h3 class="text-2xl font-bold text-white mb-2 japanese-text">3回パック</h3>
+<p class="text-white/50 text-sm mb-6 japanese-text">45分 × 3回 / 3ヶ月有効</p>
+
+<div class="flex items-baseline gap-3 mb-2">
+<span class="text-5xl font-black text-white">¥19,000</span>
+<span class="text-white/50 text-sm">（税込）</span>
+</div>
+<p class="text-white/40 text-xs mb-6 japanese-text">1回あたり約6,333円 ← 通常7,000円/回</p>
+
+<ul class="space-y-3 mb-8 text-white/70 japanese-text">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+継続的なサポート
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+アクションプラン策定
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+振り返りセッション
+</li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check</span>
+LINEでの相談対応
+</li>
+</ul>
+
+<a href="#contact" class="block w-full border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-4 rounded-xl text-center transition-all japanese-text">
+パックで申し込む
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 企業向けプラン -->
+<section class="bg-surface-dark py-32" id="corporate">
+<div class="max-w-7xl mx-auto px-6">
+<!-- ヘッダー -->
+<div class="text-center mb-16 fade-in-up">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">business</span>
+<span class="text-primary text-sm font-medium">For Companies</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+企業向け<span class="text-primary">キャリア支援</span>
+</h2>
+<p class="text-white/60 text-lg max-w-2xl mx-auto japanese-text">
+特定の層にピンポイントで面談。組織の課題を抽出し、<br class="hidden md:block">
+モチベーションアップ・人材定着につなげます。
+</p>
+</div>
+
+<!-- サービス説明 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+<!-- 左：サービス内容 -->
+<div class="space-y-6 fade-in-left">
+<h3 class="text-2xl font-bold text-white japanese-text">サービスの流れ</h3>
+
+<div class="space-y-4">
+<div class="flex items-start gap-4 bg-background-dark organic-card p-5">
+<div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
+<div>
+<h4 class="text-white font-bold mb-1 japanese-text">対象者の選定</h4>
+<p class="text-white/60 text-sm japanese-text">新人、中堅、管理職など、課題を感じている層を特定</p>
+</div>
+</div>
+
+<div class="flex items-start gap-4 bg-background-dark organic-card-alt p-5">
+<div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
+<div>
+<h4 class="text-white font-bold mb-1 japanese-text">個別面談の実施</h4>
+<p class="text-white/60 text-sm japanese-text">45分/人で丁寧にヒアリング。本音を引き出します</p>
+</div>
+</div>
+
+<div class="flex items-start gap-4 bg-background-dark organic-card p-5">
+<div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
+<div>
+<h4 class="text-white font-bold mb-1 japanese-text">匿名レポート作成</h4>
+<p class="text-white/60 text-sm japanese-text">個人が特定されない形で、組織の課題を可視化</p>
+</div>
+</div>
+
+<div class="flex items-start gap-4 bg-background-dark organic-card-alt p-5">
+<div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">4</div>
+<div>
+<h4 class="text-white font-bold mb-1 japanese-text">月末報告</h4>
+<p class="text-white/60 text-sm japanese-text">課題と改善提案をまとめてフィードバック</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 右：料金プラン -->
+<div class="space-y-6 fade-in-right">
+<h3 class="text-2xl font-bold text-white japanese-text">料金プラン</h3>
+
+<!-- 基本料金 -->
+<div class="bg-background-dark border-2 border-primary organic-card p-6">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-xl font-bold text-white japanese-text">面談料金</h4>
+<div class="text-right">
+<span class="text-3xl font-black text-primary">¥5,000</span>
+<span class="text-white/50 text-sm">/人</span>
+</div>
+</div>
+<p class="text-white/60 text-sm japanese-text">45分面談 / オンライン・対面どちらも可</p>
+</div>
+
+<!-- パックプラン -->
+<div class="bg-background-dark border border-white/10 organic-card-alt p-6">
+<h4 class="text-lg font-bold text-white mb-4 japanese-text">ボリュームディスカウント</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between py-2 border-b border-white/10">
+<span class="text-white/70 japanese-text">3名プラン</span>
+<div class="text-right">
+<span class="text-white font-bold">¥13,500</span>
+<span class="badge-save ml-2">10%OFF</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-white/10">
+<span class="text-white/70 japanese-text">5名プラン</span>
+<div class="text-right">
+<span class="text-white font-bold">¥21,250</span>
+<span class="badge-save ml-2">15%OFF</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-2">
+<span class="text-white/70 japanese-text">10名以上</span>
+<div class="text-right">
+<span class="text-white font-bold">¥4,000/人</span>
+<span class="badge-save ml-2">20%OFF</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- レポート料金 -->
+<div class="bg-background-dark border border-white/10 organic-card p-6">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="text-lg font-bold text-white japanese-text">月次レポート</h4>
+<p class="text-white/50 text-sm japanese-text">課題抽出・改善提案付き</p>
+</div>
+<div class="text-right">
+<span class="text-2xl font-black text-white">¥10,000</span>
+<span class="text-white/50 text-sm">/月</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- メリット -->
+<div class="bg-primary/10 border border-primary/30 rounded-2xl p-8 mt-12 fade-in-up">
+<h3 class="text-xl font-bold text-white mb-6 text-center japanese-text">外部のキャリアコンサルタントを入れるメリット</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="text-center">
+<div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">sync</span>
+</div>
+<h4 class="text-white font-bold mb-2 japanese-text">循環を断ち切る</h4>
+<p class="text-white/60 text-sm japanese-text">社内だけでは堂々巡りになりがちな問題に、新しい視点を</p>
+</div>
+<div class="text-center">
+<div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">forum</span>
+</div>
+<h4 class="text-white font-bold mb-2 japanese-text">本音を引き出す</h4>
+<p class="text-white/60 text-sm japanese-text">社内の人には言えない本音を、安心して話せる場を提供</p>
+</div>
+<div class="text-center">
+<div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-primary text-2xl">trending_up</span>
+</div>
+<h4 class="text-white font-bold mb-2 japanese-text">定着率アップ</h4>
+<p class="text-white/60 text-sm japanese-text">早期発見・早期対応で、離職を未然に防ぐ</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 代表者紹介 -->
+<section class="bg-background-dark py-32">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- 左側：写真 -->
+<div class="relative fade-in-left">
+<div class="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-white/10">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center">
+<div class="w-32 h-32 mx-auto bg-primary/30 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-6xl text-white/80">person</span>
+</div>
+<p class="text-white/40 text-sm japanese-text">写真準備中</p>
+</div>
+</div>
+<div class="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/20 rounded-2xl -z-10"></div>
+</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-surface-dark/90 backdrop-blur-xl border border-white/20 rounded-2xl px-8 py-4 text-center">
+<p class="text-white font-bold text-xl japanese-text">金城 竜弥</p>
+<p class="text-primary text-sm">キャリアコンサルタント</p>
+</div>
+</div>
+
+<!-- 右側：プロフィール -->
+<div class="space-y-8 fade-in-right">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
+<span class="material-symbols-outlined text-primary text-lg">badge</span>
+<span class="text-primary text-sm font-medium">Consultant</span>
+</div>
+
+<h3 class="text-3xl md:text-4xl font-bold text-white leading-tight japanese-text">
+「<span class="hand-underline text-primary">働く人</span>の味方」<br>
+でありたい
+</h3>
+
+<div class="space-y-4 text-white/70 text-lg leading-relaxed japanese-text">
+<p>
+看護師として13年間、現場で働いてきました。
+</p>
+<p>
+その経験から感じたのは、「働くことの悩みは、一人で抱え込みがち」ということ。
+</p>
+<p>
+キャリアコンサルタントとして、<span class="text-white font-medium">あなたの話を聴き、一緒に考える存在</span>でありたいと思っています。
+</p>
+</div>
+
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-full text-primary text-sm japanese-text">国家資格キャリアコンサルタント</span>
+<span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/60 text-sm japanese-text">看護師13年</span>
+<span class="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/60 text-sm japanese-text">沖縄県在住</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA セクション -->
+<section class="bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 py-20">
+<div class="max-w-4xl mx-auto px-6 text-center">
+<h3 class="text-3xl md:text-4xl font-bold text-white mb-4 japanese-text">
+まずは<span class="text-primary">話す</span>ことから
+</h3>
+<p class="text-white/70 text-lg mb-8 japanese-text">
+一人で悩まず、気軽に相談してください。<br>
+初回は<span class="text-primary font-bold">3,000円</span>でお試しいただけます。
+</p>
+<a href="#contact" class="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg shadow-primary/30 btn-hover-lift japanese-text text-lg">
+無料相談する
+<span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</section>
+
+<!-- お問い合わせ -->
+<section class="bg-background-dark py-32" id="contact">
+<div class="max-w-3xl mx-auto px-6">
+<!-- ヘッダー -->
+<div class="text-center mb-16 fade-in-up">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">mail</span>
+<span class="text-primary text-sm font-medium japanese-text">お問い合わせ</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+お気軽に<span class="text-primary">ご連絡</span>ください
+</h2>
+</div>
+
+<!-- フォーム -->
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-white/80 text-sm font-medium japanese-text">お名前 <span class="text-primary">*</span></label>
+<input type="text" required placeholder="山田 太郎" 
+class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all japanese-text">
+</div>
+<div class="space-y-2">
+<label class="text-white/80 text-sm font-medium japanese-text">会社名（企業の方）</label>
+<input type="text" placeholder="株式会社〇〇" 
+class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all japanese-text">
+</div>
+</div>
+
+<div class="space-y-2">
+<label class="text-white/80 text-sm font-medium japanese-text">メールアドレス <span class="text-primary">*</span></label>
+<input type="email" required placeholder="example@email.com" 
+class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all">
+</div>
+
+<div class="space-y-2">
+<label class="text-white/80 text-sm font-medium japanese-text">ご希望のプラン</label>
+<select class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-primary focus:bg-white/10 transition-all japanese-text">
+<option value="" class="bg-background-dark">選択してください</option>
+<option value="trial" class="bg-background-dark">【個人】お試し面談（3,000円）</option>
+<option value="pack3" class="bg-background-dark">【個人】3回パック（19,000円）</option>
+<option value="corporate" class="bg-background-dark">【企業】キャリア支援</option>
+<option value="other" class="bg-background-dark">その他・相談したい</option>
+</select>
+</div>
+
+<div class="space-y-2">
+<label class="text-white/80 text-sm font-medium japanese-text">ご相談内容</label>
+<textarea rows="4" placeholder="現在のお悩みや、ご質問など何でもお気軽にどうぞ" 
+class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-primary focus:bg-white/10 transition-all japanese-text resize-none"></textarea>
+</div>
+
+<button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-5 rounded-xl transition-all flex items-center justify-center gap-3 btn-hover-lift japanese-text text-lg">
+送信する
+<span class="material-symbols-outlined">send</span>
+</button>
+
+<p class="text-center text-white/40 text-sm japanese-text">
+※2営業日以内にご連絡いたします
+</p>
+</form>
+</div>
+</section>
+
+<!-- フッター -->
+<footer class="bg-surface-dark border-t border-white/5 py-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary text-white flex items-center justify-center rounded-sm font-black text-xl">Y</div>
+<div>
+<p class="text-white font-bold">Yazirusi</p>
+<p class="text-white/40 text-sm">Career Support</p>
+</div>
+</div>
+<div class="flex gap-8">
+<a href="index.html" class="text-white/50 hover:text-primary transition-colors text-sm japanese-text">AI業務支援</a>
+<a href="#personal" class="text-white/50 hover:text-primary transition-colors text-sm japanese-text">個人向け</a>
+<a href="#corporate" class="text-white/50 hover:text-primary transition-colors text-sm japanese-text">企業向け</a>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-white/5 text-center">
+<p class="text-white/30 text-sm">© 2024 Yazirusi. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<!-- スマホ固定CTAボタン -->
+<a href="#contact" class="fixed bottom-0 left-0 right-0 md:hidden bg-primary text-white font-bold py-4 px-6 flex items-center justify-center gap-2 shadow-lg shadow-primary/30 z-40 japanese-text">
+<span class="material-symbols-outlined">calendar_month</span>
+まずは相談する
+</a>
+
+<script>
+    // ローディングスクリーン
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 600);
+        }
+    });
+    
+    // スクロールアニメーション
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0.1
+    };
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
+        fadeObserver.observe(el);
+    });
+    
+    // スムーズスクロール
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                const headerHeight = 80;
+                const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body></html>
