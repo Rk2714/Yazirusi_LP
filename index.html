@@ -131,9 +131,131 @@
         .slight-rotate-1 { transform: rotate(-0.5deg); }
         .slight-rotate-2 { transform: rotate(0.8deg); }
         .slight-rotate-3 { transform: rotate(-0.3deg); }
+        
+        /* ===== マイクロインタラクション ===== */
+        /* ボタンホバー効果 */
+        .btn-hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-hover-lift:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px -10px rgba(74, 222, 128, 0.4);
+        }
+        
+        /* カードホバー効果 */
+        .card-hover-glow {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px -20px rgba(74, 222, 128, 0.3);
+        }
+        
+        /* アイコンパルス */
+        .icon-pulse {
+            animation: icon-pulse 2s ease-in-out infinite;
+        }
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* フェードイン（スクロール用） */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* ===== ローディングアニメーション ===== */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #0f1f17;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loading-logo {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #4ade80;
+            animation: loading-pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes loading-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .loading-bar {
+            position: absolute;
+            bottom: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, #4ade80, transparent);
+            animation: loading-bar 1s ease-in-out infinite;
+        }
+        @keyframes loading-bar {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+        
+        /* ===== パララックス ===== */
+        .parallax-bg {
+            will-change: transform;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-x-hidden">
+
+<!-- ローディングスクリーン -->
+<div id="loading-screen">
+<div class="loading-logo">Y</div>
+<div class="loading-bar"></div>
+</div>
+
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
 <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 <div class="flex items-center gap-3 group cursor-pointer">
@@ -151,7 +273,7 @@
 <a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#pricing">Pricing</a>
 </div>
 <div class="flex items-center gap-4">
-<a href="#contact" class="bg-white hover:bg-gray-200 text-black text-sm font-bold h-10 px-6 rounded-sm transition-colors flex items-center gap-2">
+<a href="#contact" class="bg-white hover:bg-gray-200 text-black text-sm font-bold h-10 px-6 rounded-sm transition-colors flex items-center gap-2 btn-hover-lift">
 <span>Free Consultation</span>
 <span class="material-symbols-outlined text-sm">arrow_outward</span>
 </a>
@@ -201,7 +323,7 @@
                         </p>
 </div>
 <div class="flex flex-wrap gap-6 mt-10">
-<a href="#contact" class="group h-12 px-8 bg-white hover:bg-white/90 text-black font-bold text-sm rounded-sm flex items-center justify-center gap-2 transition-all">
+<a href="#contact" class="group h-12 px-8 bg-white hover:bg-white/90 text-black font-bold text-sm rounded-sm flex items-center justify-center gap-2 transition-all btn-hover-lift">
                             無料相談する
                             <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
 </a>
@@ -252,7 +374,7 @@
 
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 <!-- 左側：メインコンテンツ -->
-<div class="lg:col-span-7 space-y-8">
+<div class="lg:col-span-7 space-y-8 fade-in-left">
 <h3 class="text-4xl md:text-5xl font-bold text-white leading-tight">
 <span class="text-primary">現場</span>に寄り添う<br class="hidden md:block">
 <span class="text-white/60">コンサルタント</span>
@@ -293,15 +415,15 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 右側：統計 -->
-<div class="lg:col-span-5">
+<div class="lg:col-span-5 fade-in-right">
 <div class="grid grid-cols-2 gap-6">
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center group hover:border-primary/50 transition-all duration-300">
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center group hover:border-primary/50 transition-all duration-300 card-hover-glow">
 <span class="text-6xl font-black text-primary block mb-2">13</span>
 <span class="text-sm text-white/50 uppercase tracking-widest">Years Experience</span>
 <p class="text-white/30 text-xs mt-3 japanese-text">看護師として現場で</p>
 </div>
 
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center group hover:border-primary/50 transition-all duration-300">
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center group hover:border-primary/50 transition-all duration-300 card-hover-glow">
 <span class="text-6xl font-black text-primary block mb-2">100</span>
 <span class="text-sm text-white/50 uppercase tracking-widest">% Commitment</span>
 <p class="text-white/30 text-xs mt-3 japanese-text">現場第一主義</p>
@@ -324,6 +446,199 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 </section>
 
+<!-- なぜ外部・AIを活用すべきか 図解セクション -->
+<section class="relative bg-background-dark py-32 overflow-hidden" id="why-external">
+<div class="absolute inset-0 opacity-20">
+<div class="absolute top-0 right-1/4 w-80 h-80 bg-primary/15 organic-blob blur-3xl"></div>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<!-- ヘッダー -->
+<div class="text-center mb-20 fade-in-up">
+<div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
+<span class="material-symbols-outlined text-primary text-lg">lightbulb</span>
+<span class="text-primary text-sm font-medium">Why External & AI</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-4 japanese-text">
+なぜ<span class="hand-underline text-primary">外部の力</span>を借りるのか
+</h2>
+<p class="text-white/60 text-lg max-w-2xl mx-auto japanese-text">
+内製でやる選択肢もある。でも、外部・AIを活用する方が賢い理由があります。
+</p>
+</div>
+
+<!-- 図解：フロー形式 -->
+<div class="relative">
+<!-- 中央の縦線（デスクトップのみ） -->
+<div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-primary/30 to-transparent"></div>
+
+<!-- ステップ1：現状の課題 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-16 items-center">
+<div class="lg:text-right space-y-4 parallax-element" data-speed="0.05">
+<div class="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 rounded-full px-4 py-2">
+<span class="text-red-400 text-sm font-bold">PROBLEM</span>
+</div>
+<h3 class="text-2xl md:text-3xl font-bold text-white japanese-text">内製だけでやると...</h3>
+<div class="space-y-3 text-white/70 japanese-text">
+<p class="flex items-center gap-3 lg:justify-end">
+<span class="material-symbols-outlined text-red-400">close</span>
+本業が圧迫される
+</p>
+<p class="flex items-center gap-3 lg:justify-end">
+<span class="material-symbols-outlined text-red-400">close</span>
+学習コストが膨大
+</p>
+<p class="flex items-center gap-3 lg:justify-end">
+<span class="material-symbols-outlined text-red-400">close</span>
+試行錯誤で時間がかかる
+</p>
+</div>
+</div>
+<div class="relative flex justify-center lg:justify-start">
+<!-- アイコン -->
+<div class="w-32 h-32 bg-red-500/10 border-2 border-red-500/30 rounded-full flex items-center justify-center organic-blob">
+<span class="material-symbols-outlined text-red-400 text-5xl">running_with_errors</span>
+</div>
+<!-- ノード（デスクトップ） -->
+<div class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-red-500 rounded-full border-4 border-background-dark"></div>
+</div>
+</div>
+
+<!-- 矢印 -->
+<div class="flex justify-center mb-16">
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-4xl animate-bounce">keyboard_double_arrow_down</span>
+<span class="text-primary/60 text-sm">外部・AIを活用すると</span>
+</div>
+</div>
+
+<!-- ステップ2：解決 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-16 items-center">
+<div class="relative flex justify-center lg:justify-end order-2 lg:order-1">
+<!-- アイコン -->
+<div class="w-32 h-32 bg-primary/10 border-2 border-primary/30 rounded-full flex items-center justify-center organic-blob">
+<span class="material-symbols-outlined text-primary text-5xl">psychology_alt</span>
+</div>
+<!-- ノード -->
+<div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-6 h-6 bg-primary rounded-full border-4 border-background-dark"></div>
+</div>
+<div class="space-y-4 order-1 lg:order-2 parallax-element" data-speed="-0.05">
+<div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
+<span class="text-primary text-sm font-bold">SOLUTION</span>
+</div>
+<h3 class="text-2xl md:text-3xl font-bold text-white japanese-text">外部の専門家 + AIで...</h3>
+<div class="space-y-3 text-white/70 japanese-text">
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+本業に集中できる
+</p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+最短ルートで実現
+</p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+最新技術を即導入
+</p>
+</div>
+</div>
+</div>
+
+<!-- 矢印 -->
+<div class="flex justify-center mb-16">
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-4xl animate-bounce">keyboard_double_arrow_down</span>
+<span class="text-primary/60 text-sm">その結果</span>
+</div>
+</div>
+
+<!-- ステップ3：成果 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+<div class="lg:text-right space-y-4 parallax-element" data-speed="0.03">
+<div class="inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/30 rounded-full px-4 py-2">
+<span class="text-yellow-400 text-sm font-bold">OUTCOME</span>
+</div>
+<h3 class="text-2xl md:text-3xl font-bold text-white japanese-text">組織が成長する</h3>
+<div class="space-y-3 text-white/70 japanese-text">
+<p class="flex items-center gap-3 lg:justify-end">
+<span class="material-symbols-outlined text-yellow-400">star</span>
+浮いた時間で戦略に集中
+</p>
+<p class="flex items-center gap-3 lg:justify-end">
+<span class="material-symbols-outlined text-yellow-400">star</span>
+チームの生産性UP
+</p>
+<p class="flex items-center gap-3 lg:justify-end">
+<span class="material-symbols-outlined text-yellow-400">star</span>
+本来あるべき姿へ
+</p>
+</div>
+</div>
+<div class="relative flex justify-center lg:justify-start">
+<!-- アイコン -->
+<div class="w-32 h-32 bg-yellow-500/10 border-2 border-yellow-500/30 rounded-full flex items-center justify-center organic-blob">
+<span class="material-symbols-outlined text-yellow-400 text-5xl">rocket_launch</span>
+</div>
+<!-- ノード -->
+<div class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 bg-yellow-500 rounded-full border-4 border-background-dark"></div>
+</div>
+</div>
+</div>
+
+<!-- 比較表 -->
+<div class="mt-24">
+<h3 class="text-2xl font-bold text-white text-center mb-12 japanese-text">内製 vs 外部活用</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<!-- 内製 -->
+<div class="bg-white/5 border border-white/10 organic-card p-8 relative overflow-hidden slight-rotate-1">
+<div class="absolute top-0 right-0 bg-white/10 text-white/60 px-4 py-1 text-sm rounded-bl-xl">内製のみ</div>
+<div class="space-y-4 mt-4">
+<div class="flex justify-between items-center py-3 border-b border-white/10">
+<span class="text-white/60 japanese-text">スピード</span>
+<span class="text-white/40">遅い</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-white/10">
+<span class="text-white/60 japanese-text">学習コスト</span>
+<span class="text-white/40">高い</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-white/10">
+<span class="text-white/60 japanese-text">本業への影響</span>
+<span class="text-red-400">圧迫される</span>
+</div>
+<div class="flex justify-between items-center py-3">
+<span class="text-white/60 japanese-text">最新技術</span>
+<span class="text-white/40">キャッチアップ困難</span>
+</div>
+</div>
+</div>
+
+<!-- 外部活用 -->
+<div class="bg-primary/5 border border-primary/30 organic-card-alt p-8 relative overflow-hidden slight-rotate-2">
+<div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm rounded-bl-xl font-bold">外部 + AI活用</div>
+<div class="space-y-4 mt-4">
+<div class="flex justify-between items-center py-3 border-b border-white/10">
+<span class="text-white/80 japanese-text">スピード</span>
+<span class="text-primary font-bold">速い</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-white/10">
+<span class="text-white/80 japanese-text">学習コスト</span>
+<span class="text-primary font-bold">不要</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-white/10">
+<span class="text-white/80 japanese-text">本業への影響</span>
+<span class="text-primary font-bold">集中できる</span>
+</div>
+<div class="flex justify-between items-center py-3">
+<span class="text-white/80 japanese-text">最新技術</span>
+<span class="text-primary font-bold">即導入可能</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- 代表者セクション -->
 <section class="relative bg-gradient-to-b from-surface-dark to-background-dark py-32 overflow-hidden" id="about">
 <div class="absolute inset-0 opacity-20">
@@ -334,7 +649,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <div class="max-w-7xl mx-auto px-6 relative z-10">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <!-- 左側：写真 -->
-<div class="relative">
+<div class="relative fade-in-left">
 <div class="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-white/10">
 <!-- プレースホルダー（実際の写真に差し替え可能） -->
 <div class="absolute inset-0 flex items-center justify-center">
@@ -357,7 +672,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 右側：プロフィール -->
-<div class="space-y-8">
+<div class="space-y-8 fade-in-right">
 <div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
 <span class="material-symbols-outlined text-primary text-lg">eco</span>
 <span class="text-primary text-sm font-medium">About Me</span>
@@ -426,7 +741,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <section class="bg-background-dark py-32" id="results">
 <div class="max-w-7xl mx-auto px-6">
 <!-- ヘッダー -->
-<div class="text-center mb-20">
+<div class="text-center mb-20 fade-in-up">
 <div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
 <span class="material-symbols-outlined text-primary text-lg">trending_up</span>
 <span class="text-primary text-sm font-medium">Results</span>
@@ -442,7 +757,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <!-- 事例カード -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- 事例1 -->
-<div class="bg-surface-dark border border-white/10 organic-card p-8 hover:border-primary/50 transition-all group slight-rotate-1">
+<div class="bg-surface-dark border border-white/10 organic-card p-8 hover:border-primary/50 transition-all group slight-rotate-1 card-hover-glow">
 <div class="flex items-center gap-3 mb-6">
 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">agriculture</span>
@@ -470,7 +785,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 事例2 -->
-<div class="bg-surface-dark border border-white/10 organic-card-alt p-8 hover:border-primary/50 transition-all group slight-rotate-2">
+<div class="bg-surface-dark border border-white/10 organic-card-alt p-8 hover:border-primary/50 transition-all group slight-rotate-2 card-hover-glow">
 <div class="flex items-center gap-3 mb-6">
 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">local_hospital</span>
@@ -498,7 +813,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 事例3 -->
-<div class="bg-surface-dark border border-white/10 organic-card p-8 hover:border-primary/50 transition-all group slight-rotate-3">
+<div class="bg-surface-dark border border-white/10 organic-card p-8 hover:border-primary/50 transition-all group slight-rotate-3 card-hover-glow">
 <div class="flex items-center gap-3 mb-6">
 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">school</span>
@@ -540,7 +855,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <div class="max-w-6xl mx-auto px-6 relative z-10">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 <!-- 左側：コスト計算 -->
-<div class="space-y-8">
+<div class="space-y-8 fade-in-left">
 <div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-4 py-2">
 <span class="material-symbols-outlined text-primary text-lg">calculate</span>
 <span class="text-primary text-sm font-medium">Cost Simulation</span>
@@ -588,7 +903,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 右側：本質のメッセージ -->
-<div class="space-y-8">
+<div class="space-y-8 fade-in-right">
 <div class="inline-flex items-center gap-3 bg-white/10 border border-white/20 rounded-full px-4 py-2">
 <span class="material-symbols-outlined text-white/60 text-lg">arrow_forward</span>
 <span class="text-white/60 text-sm font-medium">But that's not the point</span>
@@ -655,7 +970,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <section class="bg-gradient-to-b from-background-dark to-surface-dark py-32" id="testimonials">
 <div class="max-w-7xl mx-auto px-6">
 <!-- ヘッダー -->
-<div class="text-center mb-20">
+<div class="text-center mb-20 fade-in-up">
 <div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
 <span class="material-symbols-outlined text-primary text-lg">format_quote</span>
 <span class="text-primary text-sm font-medium">Testimonials</span>
@@ -668,7 +983,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <!-- テスティモニアルカード -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- 声1 -->
-<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative">
+<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative card-hover-glow">
 <div class="absolute -top-4 left-8">
 <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
 <span class="material-symbols-outlined text-white text-lg">format_quote</span>
@@ -689,7 +1004,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 声2 -->
-<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative">
+<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative card-hover-glow">
 <div class="absolute -top-4 left-8">
 <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
 <span class="material-symbols-outlined text-white text-lg">format_quote</span>
@@ -710,7 +1025,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 声3 -->
-<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative">
+<div class="bg-surface-light/50 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative card-hover-glow">
 <div class="absolute -top-4 left-8">
 <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
 <span class="material-symbols-outlined text-white text-lg">format_quote</span>
@@ -746,7 +1061,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <p class="text-white/70 text-lg mb-8 japanese-text">
 現在の課題をお聞かせください。解決の糸口が見つかるかもしれません。
 </p>
-<a href="#contact" class="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg shadow-primary/30 group">
+<a href="#contact" class="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg shadow-primary/30 group btn-hover-lift">
 <span class="text-lg japanese-text">無料相談する</span>
 <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
@@ -755,7 +1070,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 
 <section class="bg-background-dark py-32 relative" id="services">
 <div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6 border-b border-white/5 pb-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6 border-b border-white/5 pb-8 fade-in-up">
 <div class="flex flex-col gap-2">
 <span class="text-primary font-bold tracking-widest uppercase text-xs">How We Do It</span>
 <h2 class="text-5xl md:text-6xl font-black text-white tracking-tighter">SERVICES</h2>
@@ -925,7 +1240,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 
 <div class="relative z-10 max-w-5xl mx-auto px-6">
 <!-- ヘッダー -->
-<div class="text-center mb-16">
+<div class="text-center mb-16 fade-in-up">
 <div class="inline-flex items-center gap-3 bg-primary/10 border border-primary/30 rounded-full px-5 py-2 mb-6">
 <span class="material-symbols-outlined text-primary text-lg">eco</span>
 <span class="text-primary text-sm font-medium japanese-text">無料相談</span>
@@ -1042,7 +1357,7 @@ class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white 
 </div>
 
 <!-- 送信ボタン -->
-<button type="submit" class="w-full bg-gradient-to-r from-primary to-primary-light text-white font-bold py-5 rounded-xl hover:opacity-90 transition-all flex items-center justify-center gap-3 group shadow-lg shadow-primary/20">
+<button type="submit" class="w-full bg-gradient-to-r from-primary to-primary-light text-white font-bold py-5 rounded-xl hover:opacity-90 transition-all flex items-center justify-center gap-3 group shadow-lg shadow-primary/20 btn-hover-lift">
 <span class="japanese-text text-lg">送信する</span>
 <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
@@ -1311,5 +1626,92 @@ class="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-4 text-white 
             }
             return sessionId;
         }
+    </script>
+    
+    <!-- Loading Screen & Animations Script -->
+    <script>
+        // ===== ローディングスクリーン =====
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                // 少し遅延させてアニメーションを見せる
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                }, 800);
+            }
+        });
+        
+        // ===== スクロールアニメーション（Intersection Observer） =====
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
+        };
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // 一度表示したら監視を解除（パフォーマンス向上）
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // fade-in要素を監視
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
+            fadeObserver.observe(el);
+        });
+        
+        // ===== パララックス効果 =====
+        function handleParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            const scrollY = window.scrollY;
+            
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.speed) || 0.1;
+                const rect = el.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const viewportCenter = window.innerHeight / 2;
+                const distanceFromCenter = elementCenter - viewportCenter;
+                
+                el.style.transform = `translateY(${distanceFromCenter * speed}px)`;
+            });
+        }
+        
+        // スクロールイベント（throttleでパフォーマンス最適化）
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // 初期実行
+        handleParallax();
+        
+        // ===== スムーズスクロール（アンカーリンク） =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = 80; // ナビゲーションの高さ
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body></html>
