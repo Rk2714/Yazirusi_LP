@@ -14,10 +14,11 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#137fec", 
+                        "primary": "#a3a3a3", 
+                        "accent": "#a3a3a3",
                         "background-light": "#f6f7f8",
                         "background-dark": "#050505",
-                        "surface-dark": "#0f0f0f",
+                        "surface-dark": "#0a0a0a",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"],
@@ -44,6 +45,19 @@
         .stroked-text {
             -webkit-text-stroke: 1px rgba(255,255,255,0.3);
             color: transparent;
+        }
+        /* 和欧混植: 漢字を大きく、ひらがな・カタカナを小さく */
+        .waou-text {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .waou-text .kanji {
+            font-size: 1.15em;
+            font-weight: 500;
+        }
+        .waou-text .kana {
+            font-size: 0.85em;
+            font-weight: 300;
+            letter-spacing: 0.05em;
         }
     </style>
 </head>
@@ -99,7 +113,7 @@
                         </p>
 </div>
 <div class="flex flex-wrap gap-6 mt-10">
-<a href="#contact" class="group h-12 px-8 bg-primary hover:bg-blue-600 text-white font-bold text-sm rounded-sm flex items-center justify-center gap-2 transition-all">
+<a href="#contact" class="group h-12 px-8 bg-white hover:bg-white/90 text-black font-bold text-sm rounded-sm flex items-center justify-center gap-2 transition-all">
                             無料相談する
                             <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
 </a>
@@ -140,8 +154,8 @@
 <h3 class="text-3xl md:text-4xl font-light text-white leading-tight">
                         I am a <span class="japanese-text font-normal">現場</span> (Genba) focused consultant bringing <span class="text-white font-bold border-b border-primary/50">real solutions</span> to your <span class="text-white font-bold border-b border-primary/50">team</span>.
                     </h3>
-<p class="mt-6 text-white/50 leading-relaxed japanese-text">
-                        13年間の看護師経験で見えたもの。それは「仕組み」の不備が生む「人」の疲弊です。AIで業務を自動化し、生まれた余力を本来の「価値ある仕事」へ。キャリアとビジネス、両輪を支えます。
+<p class="mt-6 text-white/50 leading-relaxed japanese-text waou-text">
+                        <span class="kanji">13年間</span><span class="kana">の</span><span class="kanji">看護師経験</span><span class="kana">で</span><span class="kanji">見</span><span class="kana">えたもの。それは</span>「<span class="kanji">仕組</span><span class="kana">み</span>」<span class="kana">の</span><span class="kanji">不備</span><span class="kana">が</span><span class="kanji">生</span><span class="kana">む</span>「<span class="kanji">人</span>」<span class="kana">の</span><span class="kanji">疲弊</span><span class="kana">です。</span>AI<span class="kana">で</span><span class="kanji">業務</span><span class="kana">を</span><span class="kanji">自動化</span><span class="kana">し、</span><span class="kanji">生</span><span class="kana">まれた</span><span class="kanji">余力</span><span class="kana">を</span><span class="kanji">本来</span><span class="kana">の</span>「<span class="kanji">価値</span><span class="kana">ある</span><span class="kanji">仕事</span>」<span class="kana">へ。</span><span class="kanji">キャリア</span><span class="kana">と</span><span class="kanji">ビジネス</span><span class="kana">、</span><span class="kanji">両輪</span><span class="kana">を</span><span class="kanji">支</span><span class="kana">えます。</span>
                     </p>
 </div>
 <div class="flex gap-12">
@@ -329,7 +343,7 @@
 <span class="japanese-text text-white/50 tracking-widest">出張依頼・お問い合わせ</span>
 <h2 class="text-5xl md:text-7xl font-black text-white tracking-tight">
                         I COME<br/>
-                        TO <span class="text-primary">YOU</span>.
+                        TO <span class="text-white/60">YOU</span>.
                     </h2>
 <p class="text-white/60 text-lg max-w-md japanese-text">
                         あなたのビジネスの「矢印」を、共に定めましょう。<br>
@@ -384,6 +398,53 @@
 </div>
 </footer>
 
+<!-- Chat Widget -->
+<div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+    <!-- Chat Toggle Button -->
+    <button id="chat-toggle" class="w-14 h-14 rounded-full bg-white text-black shadow-lg shadow-black/20 flex items-center justify-center hover:scale-105 transition-transform">
+        <span class="material-symbols-outlined text-2xl" id="chat-icon">chat</span>
+    </button>
+    
+    <!-- Chat Window -->
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-surface-dark border border-white/10 rounded-lg shadow-2xl shadow-black/50 overflow-hidden">
+        <!-- Chat Header -->
+        <div class="bg-background-dark border-b border-white/10 p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white text-black flex items-center justify-center rounded-sm font-black text-sm">Y</div>
+                <div>
+                    <h4 class="text-white font-bold text-sm">Yazirusi AI</h4>
+                    <span class="text-white/40 text-xs">Online</span>
+                </div>
+            </div>
+            <button id="chat-close" class="text-white/40 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 bg-background-dark">
+            <div class="flex gap-3">
+                <div class="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-xs font-bold">Y</span>
+                </div>
+                <div class="bg-white/5 rounded-lg rounded-tl-none p-3 max-w-[80%]">
+                    <p class="text-white/80 text-sm japanese-text">こんにちは！Yazirusiへようこそ。業務改善やAI導入についてご質問があればお気軽にどうぞ。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="border-t border-white/10 p-3 bg-surface-dark">
+            <form id="chat-form" class="flex gap-2">
+                <input type="text" id="chat-input" placeholder="メッセージを入力..." class="flex-1 bg-background-dark border border-white/10 rounded-lg px-4 py-2 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-white/30 transition-colors">
+                <button type="submit" class="w-10 h-10 bg-white text-black rounded-lg flex items-center justify-center hover:bg-white/90 transition-colors">
+                    <span class="material-symbols-outlined text-lg">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <style>
         @keyframes slideDown {
             0% { transform: translateY(-100%); }
@@ -398,5 +459,111 @@
         }
         setInterval(updateTime, 1000);
         updateTime();
+    </script>
+    
+    <!-- Chat Widget Script -->
+    <script>
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatClose = document.getElementById('chat-close');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatIcon = document.getElementById('chat-icon');
+        
+        // n8n Webhook URL (本番環境では実際のURLに変更してください)
+        const N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL';
+        
+        chatToggle.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+            chatIcon.textContent = chatWindow.classList.contains('hidden') ? 'chat' : 'close';
+        });
+        
+        chatClose.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+            chatIcon.textContent = 'chat';
+        });
+        
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex gap-3' + (isUser ? ' flex-row-reverse' : '');
+            
+            const avatar = document.createElement('div');
+            avatar.className = `w-6 h-6 ${isUser ? 'bg-white/20' : 'bg-white/10'} rounded-full flex items-center justify-center flex-shrink-0`;
+            avatar.innerHTML = `<span class="text-white text-xs font-bold">${isUser ? 'U' : 'Y'}</span>`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = `${isUser ? 'bg-white/10 rounded-tr-none' : 'bg-white/5 rounded-tl-none'} rounded-lg p-3 max-w-[80%]`;
+            bubble.innerHTML = `<p class="text-white/80 text-sm japanese-text">${content}</p>`;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(bubble);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.className = 'flex gap-3';
+            typingDiv.innerHTML = `
+                <div class="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-xs font-bold">Y</span>
+                </div>
+                <div class="bg-white/5 rounded-lg rounded-tl-none p-3">
+                    <div class="flex gap-1">
+                        <span class="w-2 h-2 bg-white/40 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+                        <span class="w-2 h-2 bg-white/40 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+                        <span class="w-2 h-2 bg-white/40 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+        
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            addMessage(message, true);
+            chatInput.value = '';
+            addTypingIndicator();
+            
+            try {
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, sessionId: getSessionId() })
+                });
+                
+                removeTypingIndicator();
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addMessage(data.response || data.output || 'ご質問ありがとうございます。担当者より折り返しご連絡いたします。');
+                } else {
+                    addMessage('申し訳ありません。現在接続に問題が発生しています。お手数ですがメールでお問い合わせください。');
+                }
+            } catch (error) {
+                removeTypingIndicator();
+                addMessage('申し訳ありません。現在接続に問題が発生しています。お手数ですがメールでお問い合わせください。');
+            }
+        });
+        
+        function getSessionId() {
+            let sessionId = localStorage.getItem('yazirusi_chat_session');
+            if (!sessionId) {
+                sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('yazirusi_chat_session', sessionId);
+            }
+            return sessionId;
+        }
     </script>
 </body></html>
