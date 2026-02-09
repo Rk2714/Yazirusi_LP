@@ -62,6 +62,75 @@
             font-weight: 300;
             letter-spacing: 0.05em;
         }
+        
+        /* テクスチャ・ノイズ効果 */
+        .texture-noise {
+            position: relative;
+        }
+        .texture-noise::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* 手書き風アンダーライン */
+        .hand-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .hand-underline::after {
+            content: '';
+            position: absolute;
+            left: -2%;
+            bottom: -4px;
+            width: 104%;
+            height: 8px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10'%3E%3Cpath d='M0,5 Q10,2 20,5 T40,5 T60,5 T80,5 T100,5' stroke='%234ade80' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+            background-size: 100% 100%;
+            opacity: 0.7;
+        }
+        
+        /* 手書き風マーカー */
+        .hand-marker {
+            background: linear-gradient(104deg, transparent 0.9%, rgba(74,222,128,0.3) 2.4%, rgba(74,222,128,0.2) 5.8%, rgba(74,222,128,0.3) 93%, rgba(74,222,128,0.15) 96%, transparent 98%);
+            border-radius: 2px;
+            padding: 0 4px;
+            margin: 0 -4px;
+        }
+        
+        /* 有機的な形状のblob */
+        .organic-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blob-morph 8s ease-in-out infinite;
+        }
+        @keyframes blob-morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+        
+        /* 葉っぱSVG装飾 */
+        .leaf-decoration {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        /* カード：不均一な角丸 */
+        .organic-card {
+            border-radius: 24px 8px 24px 8px;
+        }
+        .organic-card-alt {
+            border-radius: 8px 24px 8px 24px;
+        }
+        
+        /* 微細な回転でランダム感 */
+        .slight-rotate-1 { transform: rotate(-0.5deg); }
+        .slight-rotate-2 { transform: rotate(0.8deg); }
+        .slight-rotate-3 { transform: rotate(-0.3deg); }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-x-hidden">
@@ -89,11 +158,27 @@
 </div>
 </div>
 </nav>
-<header class="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+<header class="relative w-full h-screen min-h-[800px] flex items-center justify-center overflow-hidden texture-noise">
+<!-- 葉っぱ装飾 -->
+<svg class="leaf-decoration top-20 left-10 w-32 h-32 text-primary" viewBox="0 0 100 100" fill="currentColor">
+<path d="M50,10 Q80,30 70,60 Q60,80 50,90 Q40,80 30,60 Q20,30 50,10 Z"/>
+</svg>
+<svg class="leaf-decoration bottom-40 right-20 w-24 h-24 text-primary rotate-45" viewBox="0 0 100 100" fill="currentColor">
+<path d="M50,10 Q80,30 70,60 Q60,80 50,90 Q40,80 30,60 Q20,30 50,10 Z"/>
+</svg>
+<svg class="leaf-decoration top-1/3 right-1/4 w-16 h-16 text-primary -rotate-12" viewBox="0 0 100 100" fill="currentColor">
+<path d="M50,10 Q80,30 70,60 Q60,80 50,90 Q40,80 30,60 Q20,30 50,10 Z"/>
+</svg>
+
+<!-- 有機的なblob -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 organic-blob blur-3xl"></div>
+<div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-primary/5 organic-blob blur-2xl" style="animation-delay: -4s;"></div>
+
 <div class="absolute inset-0 z-0">
 <div class="absolute inset-0 bg-gradient-to-b from-background-dark/90 via-background-dark/60 to-background-dark z-10"></div>
-<div class="absolute inset-0 bg-black/50 z-10"></div>
-<img alt="Abstract digital network connections with human touch" class="w-full h-full object-cover opacity-40" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"/>
+<div class="absolute inset-0 bg-black/40 z-10"></div>
+<!-- より自然な画像に変更 -->
+<img alt="Tropical nature with morning sunlight" class="w-full h-full object-cover opacity-50" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2673&auto=format&fit=crop"/>
 </div>
 <div class="relative z-20 max-w-7xl mx-auto px-6 w-full h-full flex flex-col justify-center">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -149,10 +234,14 @@
 </div>
 </header>
 
-<section class="relative bg-gradient-to-br from-background-dark via-background-dark to-primary/5 py-32 overflow-hidden" id="mission">
+<section class="relative bg-gradient-to-br from-background-dark via-background-dark to-primary/5 py-32 overflow-hidden texture-noise" id="mission">
+<!-- 葉っぱ装飾 -->
+<svg class="leaf-decoration top-20 right-10 w-20 h-20 text-primary" viewBox="0 0 100 100" fill="currentColor">
+<path d="M50,10 Q80,30 70,60 Q60,80 50,90 Q40,80 30,60 Q20,30 50,10 Z"/>
+</svg>
 <!-- 装飾用の背景要素 -->
-<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-<div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 organic-blob blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 organic-blob blur-2xl" style="animation-delay: -3s;"></div>
 
 <div class="max-w-7xl mx-auto px-6 relative z-10">
 <!-- セクションヘッダー -->
@@ -276,7 +365,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 
 <h3 class="text-3xl md:text-4xl font-bold text-white leading-tight japanese-text">
 「仕組みを直せば、<br class="hidden md:block">
-<span class="text-primary">人が救われる</span>」
+<span class="hand-underline text-primary">人が救われる</span>」
 </h3>
 
 <div class="space-y-4 text-white/70 text-lg leading-relaxed japanese-text">
@@ -353,7 +442,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 <!-- 事例カード -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- 事例1 -->
-<div class="bg-surface-dark border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all group">
+<div class="bg-surface-dark border border-white/10 organic-card p-8 hover:border-primary/50 transition-all group slight-rotate-1">
 <div class="flex items-center gap-3 mb-6">
 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">agriculture</span>
@@ -381,7 +470,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 事例2 -->
-<div class="bg-surface-dark border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all group">
+<div class="bg-surface-dark border border-white/10 organic-card-alt p-8 hover:border-primary/50 transition-all group slight-rotate-2">
 <div class="flex items-center gap-3 mb-6">
 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">local_hospital</span>
@@ -409,7 +498,7 @@ AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
 </div>
 
 <!-- 事例3 -->
-<div class="bg-surface-dark border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-all group">
+<div class="bg-surface-dark border border-white/10 organic-card p-8 hover:border-primary/50 transition-all group slight-rotate-3">
 <div class="flex items-center gap-3 mb-6">
 <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">school</span>
