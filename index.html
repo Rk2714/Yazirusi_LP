@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yazirusi AI Consultant | 仕組みと人の動きを、AIで変える</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#000000",
+                        "surface-dark": "#0a0a0a",
+                        "border-dark": "#1a1a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(19, 127, 236, 0.1) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .section-glow {
+            background: radial-gradient(circle at center, rgba(19, 127, 236, 0.05) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-slate-100 transition-colors duration-300 antialiased">
+<header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">trending_flat</span>
+</div>
+<h2 class="text-2xl font-black tracking-tight text-white">Yazirusi</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="#about">Why Us</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="#services">Services</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors" href="#pricing">Pricing</a>
+<a class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/20" href="#contact">
+                無料相談する
+            </a>
+</nav>
+<button class="md:hidden p-2 text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main>
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 hero-pattern opacity-60"></div>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-primary/10 via-transparent to-transparent"></div>
+<div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-10">
+<span class="material-symbols-outlined text-sm leading-none">bolt</span>
+                AI Business Consultant
+            </div>
+<h1 class="text-white text-5xl md:text-8xl font-black leading-[1.05] tracking-tighter mb-8">
+                TRANSFORM<br/>WORKFLOW WITH <span class="text-primary">AI</span>
+</h1>
+<h2 class="text-slate-300 text-xl md:text-3xl font-medium leading-relaxed mb-16">
+                仕組みと人の動きを、AIで変える
+            </h2>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="w-full sm:w-auto min-w-[220px] bg-primary hover:bg-primary/90 text-white h-16 px-10 rounded-full text-lg font-bold transition-all shadow-xl shadow-primary/30 flex items-center justify-center gap-2 group">
+                    無料相談する
+                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto min-w-[220px] border border-slate-700 hover:bg-slate-800 text-white h-16 px-10 rounded-full text-lg font-bold transition-all">
+                    サービス内容を見る
+                </button>
+</div>
+</div>
+</section>
+<section class="py-32 relative overflow-hidden" id="about">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<div class="inline-block text-primary font-bold tracking-widest text-sm mb-4">WHY YAZIRUSI?</div>
+<h2 class="text-4xl md:text-5xl font-black text-white mb-8 leading-tight">
+                        「仕組み」を先に整え、<br/>働く人を輝かせる。
+                    </h2>
+<div class="space-y-6 text-slate-400 text-lg leading-relaxed">
+<p>
+                            代表は13年間、看護師として現場に立ち続けました。そこで目にしたのは、非効率なシステムによって疲弊し、バーンアウトしていく仲間の姿。
+                        </p>
+<p>
+                            どんなに志が高くても、仕組みが壊れていれば人は動きを止めざるを得ません。だからこそ、Yazirusiは<span class="text-white font-bold">「Fix the system first」</span>を掲げています。
+                        </p>
+<p>
+                            私たちは単なるツール導入で終わらせません。一人ひとりのキャリア成長を支えるための<span class="text-primary font-bold underline underline-offset-8 decoration-primary/30">伴走型支援</span>を提供し、組織全体の「動き」を変えていきます。
+                        </p>
+</div>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-primary/20 blur-[100px] -z-10 rounded-full"></div>
+<div class="bg-surface-dark border border-slate-800 p-10 md:p-12 rounded-[2.5rem] shadow-2xl">
+<div class="flex flex-col gap-8">
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-xl mb-2">13年の現場経験</h4>
+<p class="text-slate-500">看護師としての実体験からくる、現場の痛みへの深い理解。</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined">settings_suggest</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-xl mb-2">仕組みからの変革</h4>
+<p class="text-slate-500">個人の努力に頼らず、AIでシステムそのものを最適化。</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined">handshake</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-xl mb-2">伴走型支援</h4>
+<p class="text-slate-500">導入後も継続的にサポートし、組織の自走を支えます。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-surface-dark/50" id="services">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="mb-20 text-center">
+<h2 class="text-4xl font-black text-white mb-6">Services</h2>
+<div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+<p class="mt-8 text-slate-400 max-w-2xl mx-auto">業務のボトルネックを特定し、最適なAIソリューションをオーダーメイドで構築します。</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group p-10 rounded-[2rem] bg-background-dark border border-slate-800 hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-16 h-16 mb-8 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-4xl">school</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-white">AI Onboarding Program</h3>
+<p class="text-slate-400 leading-relaxed text-sm">
+                        NotebookLMを活用し、社内の膨大なドキュメントを学習させた自社専用の学習基盤を構築。新入社員の教育コストを大幅に削減します。
+                    </p>
+</div>
+<div class="group p-10 rounded-[2rem] bg-background-dark border border-slate-800 hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-16 h-16 mb-8 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-4xl">calculate</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-white">Attendance &amp; Payroll</h3>
+<p class="text-slate-400 leading-relaxed text-sm">
+                        SpreadsheetとGASを組み合わせた勤怠管理・給与計算の自動化。ヒューマンエラーを排除し、管理部門の工数を月数十時間削減します。
+                    </p>
+</div>
+<div class="group p-10 rounded-[2rem] bg-background-dark border border-slate-800 hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-16 h-16 mb-8 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-4xl">inventory_2</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-white">Smart Inventory System</h3>
+<p class="text-slate-400 leading-relaxed text-sm">
+                        フォーム入力から在庫状況をリアルタイム把握。在庫不足時にはAIが自動でアラートを通知し、発注漏れによる機会損失を防ぎます。
+                    </p>
+</div>
+<div class="group p-10 rounded-[2rem] bg-background-dark border border-slate-800 hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-16 h-16 mb-8 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-4xl">hub</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-white">Slack Integration Tools</h3>
+<p class="text-slate-400 leading-relaxed text-sm">
+                        ワンクリックであらゆる情報を同期。Slackを中心としたワークフローを構築し、ツール間の行き来をなくして集中できる環境を作ります。
+                    </p>
+</div>
+<div class="group p-10 rounded-[2rem] bg-background-dark border border-slate-800 hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-16 h-16 mb-8 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-4xl">smart_toy</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-white">AI Chatbot Implementation</h3>
+<p class="text-slate-400 leading-relaxed text-sm">
+                        24時間365日対応可能なAIチャットボットを実装。社内FAQの対応から顧客対応まで、LLMを活用した高精度な対話を提供します。
+                    </p>
+</div>
+<div class="group p-10 rounded-[2rem] bg-background-dark border border-slate-800 hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-16 h-16 mb-8 rounded-2xl bg-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-4xl">code</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-white">AI Usage Workshops</h3>
+<p class="text-slate-400 leading-relaxed text-sm">
+                        Gemini, GPT, Claude, OpenCodeなど最新AIの実践的な活用法をレクチャー。現場レベルでAIを使いこなす文化を醸成します。
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 relative" id="pricing">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="mb-20 text-center">
+<h2 class="text-4xl font-black text-white mb-6">Monthly Plans</h2>
+<p class="text-slate-400">継続的なAIサポートで、ビジネスを次のフェーズへ</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 items-stretch">
+<div class="flex flex-col p-10 rounded-[2.5rem] bg-surface-dark border border-slate-800 transition-all hover:border-slate-600">
+<div class="mb-8">
+<h3 class="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">Light Support</h3>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black text-white">¥50k</span>
+<span class="text-slate-500">〜 / mo</span>
+</div>
+</div>
+<ul class="space-y-5 mb-12 flex-grow">
+<li class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 月1回の戦略ミーティング
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> チャットでの無制限相談
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-500">
+<span class="material-symbols-outlined text-slate-700 text-sm">cancel</span> 優先的な開発対応
+                        </li>
+</ul>
+<button class="w-full py-4 rounded-xl border border-slate-700 text-white font-bold hover:bg-slate-800 transition-all">このプランを選ぶ</button>
+</div>
+<div class="flex flex-col p-10 rounded-[2.5rem] bg-surface-dark border-2 border-primary relative shadow-2xl shadow-primary/20 transform md:-translate-y-4">
+<div class="absolute -top-5 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-primary text-white text-xs font-black rounded-full tracking-widest uppercase shadow-lg shadow-primary/40">RECOMMENDED</div>
+<div class="mb-8 mt-4">
+<h3 class="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-3">Standard Support</h3>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black text-white">¥100k</span>
+<span class="text-slate-500">〜 / mo</span>
+</div>
+</div>
+<ul class="space-y-5 mb-12 flex-grow">
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 月2回の戦略ミーティング
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 優先的な開発対応
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 定期的な業務改善レポート
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> ツール設定代行
+                        </li>
+</ul>
+<button class="w-full py-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold transition-all shadow-xl shadow-primary/30">このプランを選ぶ</button>
+</div>
+<div class="flex flex-col p-10 rounded-[2.5rem] bg-surface-dark border border-slate-800 transition-all hover:border-slate-600">
+<div class="mb-8">
+<h3 class="text-sm font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">Premium Support</h3>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black text-white">¥150k</span>
+<span class="text-slate-500">〜 / mo</span>
+</div>
+</div>
+<ul class="space-y-5 mb-12 flex-grow">
+<li class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 月4回の定例ミーティング
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 専属エンジニアのリソース確保
+                        </li>
+<li class="flex items-center gap-3 text-sm text-slate-300">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span> 従業員向け研修の実施
+                        </li>
+</ul>
+<button class="w-full py-4 rounded-xl border border-slate-700 text-white font-bold hover:bg-slate-800 transition-all">このプランを選ぶ</button>
+</div>
+</div>
+<div class="max-w-4xl mx-auto">
+<div class="mb-10 text-center">
+<h2 class="text-2xl font-bold text-white mb-2">Spot Development</h2>
+<p class="text-slate-500">必要な時に、必要な機能を開発</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-dark p-8 rounded-3xl border border-slate-800 flex justify-between items-center group hover:border-slate-700 transition-colors">
+<div>
+<h4 class="text-white font-bold text-lg mb-1">Tools &amp; Apps</h4>
+<p class="text-slate-500 text-sm">単一機能の自動化ツールなど</p>
+</div>
+<div class="text-right">
+<span class="text-primary font-black text-2xl tracking-tighter">¥50,000〜</span>
+</div>
+</div>
+<div class="bg-surface-dark p-8 rounded-3xl border border-slate-800 flex justify-between items-center group hover:border-slate-700 transition-colors">
+<div>
+<h4 class="text-white font-bold text-lg mb-1">Complex Systems</h4>
+<p class="text-slate-500 text-sm">在庫・勤怠・Slack連携など</p>
+</div>
+<div class="text-right">
+<span class="text-primary font-black text-2xl tracking-tighter">~¥150,000</span>
+</div>
+</div>
+</div>
+<p class="mt-8 text-center text-slate-500 text-sm">
+                    ※全国リモート対応可能。沖縄県外への訪問支援は別途旅費交通費を申し受けます。
+                </p>
+</div>
+</div>
+</section>
+<section class="py-32 max-w-7xl mx-auto px-6" id="contact">
+<div class="bg-primary/10 border border-primary/20 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+<h2 class="text-4xl md:text-6xl font-black mb-10 text-white leading-tight">
+                あなたのビジネスの「矢印」を、<br class="hidden md:block"/>共に定めましょう。
+            </h2>
+<p class="text-xl text-slate-400 max-w-3xl mx-auto mb-16 leading-relaxed">
+                まずは現状の課題を伺わせてください。現場視点での具体的な改善案をご提案します。
+            </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+<button class="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-12 py-5 rounded-full text-xl font-bold transition-all shadow-2xl shadow-primary/30">
+                    無料で相談してみる
+                </button>
+<a class="text-white font-bold hover:text-primary transition-colors flex items-center gap-2 group text-lg" href="#">
+                    お問い合わせフォーム
+                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">north_east</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-border-dark py-20 bg-background-dark">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-16">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">trending_flat</span>
+</div>
+<h2 class="text-2xl font-black tracking-tight text-white">Yazirusi</h2>
+</div>
+<p class="text-slate-500 text-sm">仕組みと人の動きを、AIで変える。</p>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+<div class="flex gap-10 text-sm font-medium">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Twitter (X)</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#contact">Contact Form</a>
+</div>
+<div class="flex gap-8 text-sm text-slate-600">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms</a>
+</div>
+</div>
+</div>
+<div class="text-center md:text-left text-xs text-slate-700 font-medium tracking-widest uppercase">
+            Copyright Yazirusi 2024
+        </div>
+</div>
+</footer>
+
+</body></html>
