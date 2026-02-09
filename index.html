@@ -14,11 +14,12 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#a3a3a3", 
-                        "accent": "#a3a3a3",
+                        "primary": "#6bcb9e", 
+                        "accent": "#6bcb9e",
+                        "primary-light": "#a8e6cf",
                         "background-light": "#f6f7f8",
-                        "background-dark": "#050505",
-                        "surface-dark": "#0a0a0a",
+                        "background-dark": "#0a0f0d",
+                        "surface-dark": "#0f1512",
                     },
                     fontFamily: {
                         "display": ["Manrope", "sans-serif"],
@@ -146,26 +147,86 @@
 </div>
 </header>
 
-<section class="bg-background-dark py-24 border-b border-white/5" id="mission">
-<div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
-<div class="max-w-2xl">
-<span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">FROM THE FIELD</span>
-<h3 class="text-3xl md:text-4xl font-light text-white leading-tight">
-                        I am a <span class="japanese-text font-normal">現場</span> (Genba) focused consultant bringing <span class="text-white font-bold border-b border-primary/50">real solutions</span> to your <span class="text-white font-bold border-b border-primary/50">team</span>.
-                    </h3>
-<p class="mt-6 text-white/50 leading-relaxed japanese-text waou-text">
-                        <span class="kanji">13年間</span><span class="kana">の</span><span class="kanji">看護師経験</span><span class="kana">で</span><span class="kanji">見</span><span class="kana">えたもの。それは</span>「<span class="kanji">仕組</span><span class="kana">み</span>」<span class="kana">の</span><span class="kanji">不備</span><span class="kana">が</span><span class="kanji">生</span><span class="kana">む</span>「<span class="kanji">人</span>」<span class="kana">の</span><span class="kanji">疲弊</span><span class="kana">です。</span>AI<span class="kana">で</span><span class="kanji">業務</span><span class="kana">を</span><span class="kanji">自動化</span><span class="kana">し、</span><span class="kanji">生</span><span class="kana">まれた</span><span class="kanji">余力</span><span class="kana">を</span><span class="kanji">本来</span><span class="kana">の</span>「<span class="kanji">価値</span><span class="kana">ある</span><span class="kanji">仕事</span>」<span class="kana">へ。</span><span class="kanji">キャリア</span><span class="kana">と</span><span class="kanji">ビジネス</span><span class="kana">、</span><span class="kanji">両輪</span><span class="kana">を</span><span class="kanji">支</span><span class="kana">えます。</span>
-                    </p>
+<section class="relative bg-gradient-to-br from-background-dark via-background-dark to-primary/5 py-32 overflow-hidden" id="mission">
+<!-- 装飾用の背景要素 -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-2xl"></div>
+
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<!-- セクションヘッダー -->
+<div class="flex items-center gap-4 mb-16">
+<div class="h-[1px] w-12 bg-gradient-to-r from-primary to-transparent"></div>
+<span class="text-primary font-bold tracking-widest uppercase text-xs">From The Field</span>
 </div>
-<div class="flex gap-12">
-<div class="flex flex-col">
-<span class="text-5xl font-black text-white stroked-text hover:text-white transition-all duration-500">13</span>
-<span class="text-xs text-white/40 uppercase tracking-widest mt-2">Years Exp.</span>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<!-- 左側：メインコンテンツ -->
+<div class="lg:col-span-7 space-y-8">
+<h3 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+<span class="text-primary">現場</span>に寄り添う<br class="hidden md:block">
+<span class="text-white/60">コンサルタント</span>
+</h3>
+
+<div class="space-y-6">
+<p class="text-xl md:text-2xl text-white/80 leading-relaxed font-light japanese-text">
+13年間の看護師経験で見えたこと。
+</p>
+
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-xl">warning</span>
 </div>
-<div class="flex flex-col">
-<span class="text-5xl font-black text-white stroked-text hover:text-white transition-all duration-500">100%</span>
-<span class="text-xs text-white/40 uppercase tracking-widest mt-2">Commitment</span>
+<p class="text-white/70 text-lg leading-relaxed japanese-text">
+「仕組み」の不備が「人」の疲弊を生む
+</p>
+</div>
+
+<div class="h-[1px] w-full bg-gradient-to-r from-primary/30 via-white/10 to-transparent"></div>
+
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary text-xl">lightbulb</span>
+</div>
+<p class="text-white/70 text-lg leading-relaxed japanese-text">
+AIで業務を自動化し、生まれた余力を<br class="hidden md:block">
+本来の「価値ある仕事」へ
+</p>
+</div>
+</div>
+
+<p class="text-white/50 text-base japanese-text">
+キャリアとビジネス、両輪を支えます。
+</p>
+</div>
+</div>
+
+<!-- 右側：統計 -->
+<div class="lg:col-span-5">
+<div class="grid grid-cols-2 gap-6">
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center group hover:border-primary/50 transition-all duration-300">
+<span class="text-6xl font-black text-primary block mb-2">13</span>
+<span class="text-sm text-white/50 uppercase tracking-widest">Years Experience</span>
+<p class="text-white/30 text-xs mt-3 japanese-text">看護師として現場で</p>
+</div>
+
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center group hover:border-primary/50 transition-all duration-300">
+<span class="text-6xl font-black text-primary block mb-2">100</span>
+<span class="text-sm text-white/50 uppercase tracking-widest">% Commitment</span>
+<p class="text-white/30 text-xs mt-3 japanese-text">現場第一主義</p>
+</div>
+
+<div class="col-span-2 bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm border border-primary/30 rounded-2xl p-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/30 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">location_on</span>
+</div>
+<div>
+<p class="text-white font-bold text-lg">沖縄から全国へ</p>
+<p class="text-white/60 text-sm japanese-text">リモートで全国対応可能</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
